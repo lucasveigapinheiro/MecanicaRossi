@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rossi Mecânica - Mecânica em São Bernardo do Campo</title>
+    <meta name="description"
+        content="Mecânica em São Bernardo do Campo com +20 anos de experiência. Diagnóstico rápido, atendimento confiável e garantia no serviço.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --color-background-primary: #1a1a1a;
+            --color-background-secondary: #0f0f0f;
+            --color-text-primary: #ffffff; 
+            --color-text-secondary: rgba(255, 255, 255, 0.7);
+            --color-border-tertiary: rgba(255, 255, 255, 0.1);
+            --color-accent: #E63E2F;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--color-text-primary);
+            background: #0a0a0a;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--color-background-primary);
+            border-bottom: 1px solid var(--color-border-tertiary);
+            padding: 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background-color: rgba(26, 26, 26, 0.95);
+        }
+
+        .header-logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        .header-logo span {
+            color: var(--color-accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .nav-cta {
+            background: var(--color-accent);
+            color: #fff !important;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(230, 62, 47, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #fff;
+            padding: 100px 40px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(45deg,
+                    transparent,
+                    transparent 40px,
+                    rgba(230, 62, 47, 0.03) 40px,
+                    rgba(230, 62, 47, 0.03) 41px);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--color-accent);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 25px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .hero h1 span {
+            color: var(--color-accent);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--color-accent);
+            color: #fff;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(230, 62, 47, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 16px 32px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Stats Section */
+        .stats-bar {
+            background: var(--color-accent);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            padding: 32px 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: #fff;
+        }
+
+        .stat-item+.stat-item {
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-num {
+            font-size: 32px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 40px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 4vw, 36px);
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--color-text-primary);
+        }
+
+        .section-sub {
+            font-size: 16px;
+            color: var(--color-text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 48px;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--color-background-primary);
+            border: 1px solid var(--color-border-tertiary);
+            border-radius: 16px;
+            padding: 32px 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(230, 62, 47, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+        }
+
+        .service-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            margin-bottom: 8px;
+        }
+
+        .service-desc {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about-section {
+            background: var(--color-background-secondary);
+            padding: 80px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 32px;
+        }
+
+        .about-tag {
+            background: var(--color-background-primary);
+            border: 1px solid var(--color-border-tertiary);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 13px;
+            color: var(--color-text-secondary);
+        }
+
+        .about-visual {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-radius: 20px;
+            padding: 48px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-visual::after {
+            content: '';
+            position: absolute;
+            right: -40px;
+            bottom: -40px;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: rgba(230, 62, 47, 0.1);
+        }
+
+        .checkmark-list {
+            list-style: none;
+            margin-top: 32px;
+        }
+
+        .checkmark-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--color-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 2px;
+            font-size: 12px;
+            color: #fff;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            padding: 80px 40px;
+            background: var(--color-background-primary);
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .review-card {
+            background: var(--color-background-secondary);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .stars {
+            color: var(--color-accent);
+            font-size: 14px;
+            margin-bottom: 16px;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            font-size: 15px;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .reviewer-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .reviewer-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        .reviewer-role {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-top: 2px;
+        }
+
+        /* Locations Section */
+        .locations-section {
+            background: var(--color-background-secondary);
+            padding: 80px 40px;
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .location-card {
+            background: var(--color-background-primary);
+            border: 1px solid var(--color-border-tertiary);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .location-badge {
+            display: inline-block;
+            background: rgba(230, 62, 47, 0.1);
+            color: var(--color-accent);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+        }
+
+        .location-name {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--color-text-primary);
+        }
+
+        .location-detail {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+            align-items: flex-start;
+        }
+
+        .location-detail-icon {
+            color: var(--color-accent);
+            font-size: 16px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .whatsapp-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 24px;
+            padding: 12px 20px;
+            background: #25D366;
+            color: #fff;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            width: fit-content;
+            transition: all 0.2s;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            color: var(--color-text-secondary);
+            padding: 48px 40px;
+            text-align: center;
+            border-top: 1px solid var(--color-border-tertiary);
+        }
+
+        .footer-logo {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .footer-logo span {
+            color: var(--color-accent);
+        }
+
+        footer p {
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 60px 20px 40px;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .about-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .locations-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .stat-item+.stat-item {
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+                padding-top: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-logo">Rossi <span>Mecânica</span></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <a href="https://api.whatsapp.com/send/?phone=5511954429886&text=Gostaria+de+agendar+um+horário."
+                class="nav-cta">Agendar</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-badge">+20 anos de experiência</div>
+        <h1>Seu carro merece o <span>melhor cuidado</span></h1>
+        <p>Mecânica completa com diagnóstico preciso, atendimento transparente e qualidade garantida. Duas unidades em
+            São Bernardo do Campo para te atender.</p>
+        <div class="hero-btns">
+            <a href="https://api.whatsapp.com/send/?phone=5511954429886&text=Gostaria+de+agendar+um+horário."
+                class="btn-primary">
+                <i data-lucide="message-circle" style="width: 20px; height: 20px;"></i>
+                Agendar pelo WhatsApp
+            </a>
+            <a href="#servicos" class="btn-secondary">Ver serviços →</a>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <span class="stat-num">+20</span>
+            <span class="stat-label">Anos de mercado</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num">2</span>
+            <span class="stat-label">Unidades em SBC</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Satisfação garantida</span>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="section" id="servicos">
+        <div class="section-label">O que fazemos</div>
+        <div class="section-title">Serviços especializados</div>
+        <div class="section-sub">Diagnóstico e reparo completo para todas as necessidades do seu veículo, com peças de
+            qualidade e mão de obra certificada.</div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <div class="service-name">Suspensão</div>
+                <div class="service-desc">Revisão completa de amortecedores, molas e componentes</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <div class="service-name">Injeção eletrônica</div>
+                <div class="service-desc">Diagnóstico e ajuste fino do sistema de injeção</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🛑</div>
+                <div class="service-name">Sistema de freios</div>
+                <div class="service-desc">Pastilhas, discos, fluido e revisão completa</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌡️</div>
+                <div class="service-name">Arrefecimento</div>
+                <div class="service-desc">Radiador, mangueiras, termostato e fluido</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔩</div>
+                <div class="service-name">Embreagem</div>
+                <div class="service-desc">Troca e revisão do sistema de embreagem</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚙️</div>
+                <div class="service-name">Câmbio</div>
+                <div class="service-desc">Revisão e reparo de câmbio manual e automático</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="sobre">
+        <div>
+            <div class="section-label">Sobre a Rossi</div>
+            <div class="section-title">Confiança construída ao longo de duas décadas</div>
+            <div class="section-sub">Nossa dedicação à excelência e vasta experiência nos permitiram conquistar a
+                confiança de milhares de clientes em São Bernardo do Campo.</div>
+            <div class="about-tags">
+                <span class="about-tag">Orçamento transparente</span>
+                <span class="about-tag">Peças de qualidade</span>
+                <span class="about-tag">Prazo cumprido</span>
+                <span class="about-tag">Garantia no serviço</span>
+                <span class="about-tag">Equipe especializada</span>
+            </div>
+        </div>
+        <div class="about-visual">
+            <div
+                style="font-size: 14px; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;">
+                Por que escolher a Rossi?</div>
+            <div style="font-size: 22px; font-weight: 600; color: #fff; margin-bottom: 24px;">Resolvemos o que outros
+                não conseguem</div>
+            <ul class="checkmark-list">
+                <li><span class="check-icon">✓</span> Diagnóstico preciso com scanner profissional</li>
+                <li><span class="check-icon">✓</span> Atendimento direto com o mecânico responsável</li>
+                <li><span class="check-icon">✓</span> Horário de funcionamento segunda a sexta, 8h–18h</li>
+                <li><span class="check-icon">✓</span> Agendamento rápido pelo WhatsApp</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section">
+        <div class="section-label">Depoimentos</div>
+        <div class="section-title">O que dizem nossos clientes</div>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <div class="review-text">"Atendimento ótimo do orçamento à entrega. Excelente serviço, agilidade,
+                    qualidade e atenção ao cliente. Fiquei muito satisfeita!"</div>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">RA</div>
+                    <div>
+                        <div class="reviewer-name">Rosemary Athaíde</div>
+                        <div class="reviewer-role">Cliente fidelizada</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <div class="review-text">"Um barulho investigado por duas concessionárias sem solução. Aqui na Rossi foi
+                    solucionado! Parabéns pelo excelente trabalho."</div>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">ER</div>
+                    <div>
+                        <div class="reviewer-name">Edna Rosana</div>
+                        <div class="reviewer-role">Cliente satisfeita</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <div class="review-text">"Atendimento impecável! Prazo e qualidade excelentes. A entrega foi muito mais
+                    rápida do que eu esperava. Continuem assim!"</div>
+                <div class="reviewer">
+                    <div class="reviewer-avatar">JC</div>
+                    <div>
+                        <div class="reviewer-name">João Carlos</div>
+                        <div class="reviewer-role">Cliente recorrente</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="locations-section" id="contato">
+        <div class="section-label">Onde estamos</div>
+        <div class="section-title">Duas unidades para te atender</div>
+        <div class="locations-grid">
+            <div class="location-card">
+                <span class="location-badge">Unidade 1</span>
+                <div class="location-name">Nova Petrópolis</div>
+                <div class="location-detail">
+                    <span class="location-detail-icon">📍</span>
+                    <span>Av. Imperatriz Leopoldina, 866 — Nova Petrópolis, São Bernardo do Campo, SP — CEP
+                        09770-272</span>
+                </div>
+                <div class="location-detail">
+                    <span class="location-detail-icon">🕐</span>
+                    <span>Segunda a sexta, das 8h às 18h</span>
+                </div>
+                <div class="location-detail">
+                    <span class="location-detail-icon">✉️</span>
+                    <span>rrcar.2023@gmail.com</span>
+                </div>
+                <a href="https://api.whatsapp.com/send/?phone=5511954429886" class="whatsapp-btn">
+                    <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+                    (11) 95442-9886
+                </a>
+            </div>
+            <div class="location-card">
+                <span class="location-badge">Unidade 2</span>
+                <div class="location-name">Demarchi</div>
+                <div class="location-detail">
+                    <span class="location-detail-icon">📍</span>
+                    <span>Av. Maria Servidei Demarchi, 2.320 — Demarchi, São Bernardo do Campo, SP — CEP
+                        09820-000</span>
+                </div>
+                <div class="location-detail">
+                    <span class="location-detail-icon">🕐</span>
+                    <span>Segunda a sexta, das 8h às 18h</span>
+                </div>
+                <div class="location-detail">
+                    <span class="location-detail-icon">✉️</span>
+                    <span>rrcar.2023@gmail.com</span>
+                </div>
+                <a href="https://api.whatsapp.com/send/?phone=5511961853408" class="whatsapp-btn">
+                    <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+                    (11) 96185-3408
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">Rossi <span>Mecânica</span></div>
+        <p>Rossi Mecânica 2026 © — Todos os direitos reservados</p>
+        <div class="footer-links">
+            <a href="#">Política de privacidade</a>
+            <a href="#">Cookies</a>
+        </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
