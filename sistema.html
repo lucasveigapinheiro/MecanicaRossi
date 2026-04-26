@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Ordem de Serviço</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f4f4;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input,
+        textarea,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #218838;
+        }
+
+        .os {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        .concluido {
+            background: #d4edda;
+        }
+
+        .actions {
+            margin-top: 10px;
+        }
+
+        .actions button {
+            width: auto;
+            margin-right: 5px;
+            padding: 6px 10px;
+        }
+
+        .delete {
+            background: #dc3545;
+        }
+
+        .delete:hover {
+            background: #c82333;
+        }
+
+        .done {
+            background: #007bff;
+        }
+
+        .done:hover {
+            background: #0069d9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Ordem de Serviço</h1>
+
+        <input id="cliente" placeholder="Nome do cliente">
+
+        <textarea id="descricao" placeholder="Descrição do serviço"></textarea>
+
+        <button onclick="criarOS()">Criar Ordem</button>
+
+        <div id="lista"></div>
+
+    </div>
+
+    <script>
+
+        let ordens = JSON.parse(localStorage.getItem("ordens")) || []
+
+        function salvar() {
+            localStorage.setItem("ordens", JSON.stringify(ordens))
+        }
+
+        function criarOS() {
+
+            let cliente = document.getElementById("cliente").value
+            let descricao = document.getElementById("descricao").value
+
+            if (cliente === "" || descricao === "") {
+                alert("Preencha todos os campos")
+                return
+            }
+
+            let ordem = {
+                id: Date.now(),
+                cliente,
+                descricao,
+                status: "pendente"
+            }
+
+            ordens.push(ordem)
+
+            salvar()
+            renderizar()
+
+            document.getElementById("cliente").value = ""
+            document.getElementById("descricao").value = ""
+        }
+
+        function renderizar() {
+
+            let lista = document.getElementById("lista")
+            lista.innerHTML = ""
+
+            ordens.forEach(os => {
+
+                let div = document.createElement("div")
+                div.className = "os"
+                if (os.status === "concluido") {
+                    div.className += " concluido"
+                }
+                div.innerHTML = `
+                    <strong>${os.cliente}</strong><br>
+                    ${os.descricao}<br>
+                    <small>ID: ${os.id}</small>
+                    <div class="actions">
+                        <button class="done" onclick="concluir(${os.id})">Concluir</button>
+                        <button class="delete" onclick="excluir(${os.id})">Excluir</button>
+                    </div>
+                `
+                lista.appendChild(div)
+            })
+        }
+
+        function concluir(id) {
+            ordens = ordens.map(os => {
+                if (os.id === id) {
+                    os.status = "concluido"
+                }
+                return os
+            })
+            salvar()
+            renderizar()
+        }
+
+        function excluir(id) {
+            ordens = ordens.filter(os => os.id !== id)
+            salvar()
+            renderizar()
+        }
+
+        renderizar()
+    </script>
+
+</body>
+
+</html>
