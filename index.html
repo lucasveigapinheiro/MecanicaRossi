@@ -7,13 +7,16 @@
     <title>Rossi Mecânica — Mecânica em São Bernardo do Campo</title>
     <meta name="description"
         content="Mecânica em São Bernardo do Campo com +20 anos de experiência. Diagnóstico rápido, atendimento confiável e garantia no serviço.">
-    <link rel="stylesheet" href="style.css">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-
 </head>
 
 <body>
@@ -67,18 +70,28 @@
 
     <!-- ===== HERO ===== -->
     <section class="hero" id="inicio">
+        <!-- Floating Parallax Elements -->
+        <div class="floating-gear gear-1" data-speed="15">
+            <i data-lucide="settings" style="width: 120px; height: 120px; stroke-width: 1; opacity: 0.1;"></i>
+        </div>
+        <div class="floating-gear gear-2" data-speed="-25">
+            <i data-lucide="wrench" style="width: 80px; height: 80px; stroke-width: 1; opacity: 0.15;"></i>
+        </div>
+        <div class="floating-gear gear-3" data-speed="35">
+            <i data-lucide="settings-2" style="width: 150px; height: 150px; stroke-width: 1; opacity: 0.08;"></i>
+        </div>
+
         <div class="hero-content">
-            <span class="hero-badge">+20 anos de experiência</span>
-            <h1>Seu carro merece o <span>melhor cuidado</span></h1>
-            <p>Mecânica completa com diagnóstico preciso, atendimento transparente e qualidade garantida. Duas unidades
-                em São Bernardo do Campo para te atender.</p>
+            <span class="hero-badge">Mais de 20 anos de experiência</span>
+            <h1>Seu veículo merece o <span>melhor cuidado</span>.</h1>
+            <p>Mecânica completa com diagnóstico preciso, atendimento transparente e qualidade garantida. Duas unidades em São Bernardo do Campo prontas para te atender com excelência.</p>
             <div class="hero-btns">
                 <a href="https://api.whatsapp.com/send/?phone=5511954429886&text=Olá!+vim+pelo+site+e+gostaria+de+agendar+um+horário."
                     target="_blank" class="btn-primary">
                     <i data-lucide="message-circle" style="width:20px;height:20px;"></i>
                     Agendar pelo WhatsApp
                 </a>
-                <a href="#servicos" class="btn-secondary">Ver serviços →</a>
+                <a href="#servicos" class="btn-secondary">Nossos Serviços</a>
             </div>
         </div>
     </section>
@@ -99,48 +112,85 @@
         </div>
     </div>
 
+    <!-- ===== PAINEL INTERATIVO ===== -->
+    <section class="section dashboard-container" id="diagnostico">
+        <div class="section-header center">
+            <div class="section-label">Diagnóstico Interativo</div>
+            <h2 class="section-title">O que o seu painel está dizendo?</h2>
+            <p class="section-sub">Clique nas luzes de alerta comuns do painel para entender o que elas significam e como podemos ajudar a resolver o problema com segurança.</p>
+        </div>
+
+        <div class="interactive-dashboard">
+            <div class="dashboard-lights">
+                <button class="dash-indicator active" data-type="engine">
+                    <i data-lucide="triangle-alert"></i>
+                    <span>Motor</span>
+                </button>
+                <button class="dash-indicator" data-type="oil">
+                    <i data-lucide="droplet"></i>
+                    <span>Óleo</span>
+                </button>
+                <button class="dash-indicator" data-type="battery">
+                    <i data-lucide="battery-warning"></i>
+                    <span>Bateria</span>
+                </button>
+                <button class="dash-indicator" data-type="temp">
+                    <i data-lucide="thermometer"></i>
+                    <span>Temp</span>
+                </button>
+            </div>
+            
+            <div class="dashboard-info">
+                <h3 id="dash-info-title">Luz de Injeção Eletrônica</h3>
+                <p id="dash-info-desc">Indica falhas no motor, sensores ou sistema de exaustão. Requer diagnóstico imediato com scanner para evitar danos graves.</p>
+                <a href="https://api.whatsapp.com/send/?phone=5511954429886&text=Olá!+Minha+luz+do+painel+acendeu+e+preciso+de+um+diagnóstico." target="_blank" class="btn-primary mt-4">Solicitar Diagnóstico</a>
+            </div>
+        </div>
+    </section>
+
     <!-- ===== SERVIÇOS ===== -->
     <section class="section" id="servicos">
-        <div class="section-label">O que fazemos</div>
-        <h2 class="section-title">Serviços especializados</h2>
-        <p class="section-sub">Diagnóstico e reparo completo para todas as necessidades do seu veículo, com peças de
-            qualidade e mão de obra certificada.</p>
+        <div class="section-header">
+            <div class="section-label">Nossas Especialidades</div>
+            <h2 class="section-title">Serviços Premium</h2>
+            <p class="section-sub">Diagnóstico e reparo completo para todas as necessidades do seu veículo, com peças de altíssima qualidade e mão de obra altamente certificada.</p>
+        </div>
 
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon">🔧</div>
+                <div class="service-icon"><i data-lucide="wrench"></i></div>
                 <div class="service-name">Suspensão</div>
-                <div class="service-desc">Revisão completa de amortecedores, molas e componentes</div>
+                <div class="service-desc">Revisão completa de amortecedores, molas e componentes do sistema.</div>
             </div>
             <div class="service-card">
-                <div class="service-icon">⚡</div>
-                <div class="service-name">Injeção eletrônica</div>
-                <div class="service-desc">Diagnóstico e ajuste fino do sistema de injeção</div>
+                <div class="service-icon"><i data-lucide="cpu"></i></div>
+                <div class="service-name">Injeção Eletrônica</div>
+                <div class="service-desc">Diagnóstico avançado e ajuste fino do sistema de injeção.</div>
             </div>
             <div class="service-card">
-                <div class="service-icon">🛑</div>
-                <div class="service-name">Sistema de freios</div>
-                <div class="service-desc">Pastilhas, discos, fluido e revisão completa</div>
+                <div class="service-icon"><i data-lucide="circle-dashed"></i></div>
+                <div class="service-name">Sistema de Freios</div>
+                <div class="service-desc">Troca de pastilhas, discos, fluido e revisão completa de segurança.</div>
             </div>
             <div class="service-card">
-                <div class="service-icon">🌡️</div>
+                <div class="service-icon"><i data-lucide="thermometer-snowflake"></i></div>
                 <div class="service-name">Arrefecimento</div>
-                <div class="service-desc">Radiador, mangueiras, termostato e fluido</div>
+                <div class="service-desc">Manutenção de radiador, mangueiras, termostato e fluido.</div>
             </div>
             <div class="service-card">
-                <div class="service-icon">🔩</div>
+                <div class="service-icon"><i data-lucide="settings-2"></i></div>
                 <div class="service-name">Embreagem</div>
-                <div class="service-desc">Troca e revisão do sistema de embreagem</div>
+                <div class="service-desc">Substituição e revisão detalhada do sistema de embreagem.</div>
             </div>
             <div class="service-card">
-                <div class="service-icon">⚙️</div>
+                <div class="service-icon"><i data-lucide="cog"></i></div>
                 <div class="service-name">Câmbio</div>
-                <div class="service-desc">Revisão e reparo de câmbio manual e automático</div>
+                <div class="service-desc">Revisão e reparo especializado de câmbio manual e automático.</div>
             </div>
             <div class="service-card">
-                <div class="service-icon">🔍</div>
-                <div class="service-name">Revisão preventiva</div>
-                <div class="service-desc">Check-up completo para evitar surpresas na estrada</div>
+                <div class="service-icon"><i data-lucide="clipboard-check"></i></div>
+                <div class="service-name">Revisão Preventiva</div>
+                <div class="service-desc">Check-up veicular completo para você viajar com total segurança.</div>
             </div>
         </div>
     </section>
@@ -149,37 +199,37 @@
     <section class="about-section" id="sobre">
         <div class="about-text">
             <div class="section-label">Sobre a Rossi</div>
-            <h2 class="section-title">Confiança construída ao longo de duas décadas</h2>
-            <p class="section-sub">Nossa dedicação à excelência e vasta experiência nos permitiram conquistar a
-                confiança de milhares de clientes em São Bernardo do Campo.</p>
+            <h2 class="section-title">Confiança construída ao longo de duas décadas.</h2>
+            <p class="section-sub">Nossa dedicação inabalável à excelência automotiva nos permitiu conquistar a confiança de milhares de clientes em São Bernardo do Campo. O seu carro nas mãos de quem realmente entende.</p>
             <div class="about-tags">
-                <span class="about-tag">Orçamento transparente</span>
-                <span class="about-tag">Peças de qualidade</span>
-                <span class="about-tag">Prazo cumprido</span>
-                <span class="about-tag">Garantia no serviço</span>
-                <span class="about-tag">Equipe especializada</span>
+                <span class="about-tag">Orçamento Transparente</span>
+                <span class="about-tag">Peças de Qualidade</span>
+                <span class="about-tag">Prazo Rigoroso</span>
+                <span class="about-tag">Garantia Comprovada</span>
+                <span class="about-tag">Time Especializado</span>
             </div>
         </div>
 
         <div class="about-visual">
+            <div class="about-glow"></div>
             <p class="about-visual-label">Por que escolher a Rossi?</p>
-            <h3 class="about-visual-title">Resolvemos o que outros não conseguem</h3>
+            <h3 class="about-visual-title">Resolvemos o que outros não conseguem.</h3>
             <ul class="checkmark-list">
                 <li>
-                    <span class="check-icon">✓</span>
-                    Diagnóstico preciso com scanner profissional
+                    <span class="check-icon"><i data-lucide="check" style="width:14px;height:14px;stroke-width:3;"></i></span>
+                    Diagnóstico preciso com scanner profissional e tecnologia de ponta.
                 </li>
                 <li>
-                    <span class="check-icon">✓</span>
-                    Atendimento direto com o mecânico responsável
+                    <span class="check-icon"><i data-lucide="check" style="width:14px;height:14px;stroke-width:3;"></i></span>
+                    Atendimento direto com o mecânico chefe responsável.
                 </li>
                 <li>
-                    <span class="check-icon">✓</span>
-                    Horário de funcionamento segunda a sexta, 8h–18h
+                    <span class="check-icon"><i data-lucide="check" style="width:14px;height:14px;stroke-width:3;"></i></span>
+                    Horário de funcionamento: Segunda a Sexta, 8h às 18h.
                 </li>
                 <li>
-                    <span class="check-icon">✓</span>
-                    Agendamento rápido pelo WhatsApp
+                    <span class="check-icon"><i data-lucide="check" style="width:14px;height:14px;stroke-width:3;"></i></span>
+                    Agendamento rápido e fácil diretamente pelo WhatsApp.
                 </li>
             </ul>
         </div>
@@ -187,14 +237,21 @@
 
     <!-- ===== DEPOIMENTOS ===== -->
     <section class="reviews-section">
-        <div class="section-label">Depoimentos</div>
-        <h2 class="section-title">O que dizem nossos clientes</h2>
+        <div class="section-header center">
+            <div class="section-label">Depoimentos</div>
+            <h2 class="section-title">A palavra dos nossos clientes</h2>
+        </div>
 
         <div class="reviews-grid">
             <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p class="review-text">"Atendimento ótimo do orçamento à entrega. Excelente serviço, agilidade,
-                    qualidade e atenção ao cliente. Fiquei muito satisfeita!"</p>
+                <div class="stars">
+                    <i data-lucide="star" class="star-filled"></i>
+                    <i data-lucide="star" class="star-filled"></i>
+                    <i data-lucide="star" class="star-filled"></i>
+                    <i data-lucide="star" class="star-filled"></i>
+                    <i data-lucide="star" class="star-filled"></i>
+                </div>
+                <p class="review-text">"Atendimento impecável do orçamento à entrega. Excelente serviço, agilidade, qualidade e atenção ao cliente. Fiquei extremamente satisfeita!"</p>
                 <div class="reviewer">
                     <div class="reviewer-avatar">RA</div>
                     <div>
@@ -205,9 +262,14 @@
             </div>
 
             <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p class="review-text">"Um barulho investigado por duas concessionárias sem solução. Aqui na Rossi foi
-                    solucionado! Parabéns pelo excelente trabalho."</p>
+                <div class="stars">
+                    <i data-lucide="star" class="star-filled"></i>
+                    <i data-lucide="star" class="star-filled"></i>
+                    <i data-lucide="star" class="star-filled"></i>
+                    <i data-lucide="star" class="star-filled"></i>
+                    <i data-lucide="star" class="star-filled"></i>
+                </div>
+                <p class="review-text">"Um barulho investigado por duas concessionárias sem solução. Aqui na Rossi foi solucionado! Parabéns pelo excelente trabalho e profissionalismo."</p>
                 <div class="reviewer">
                     <div class="reviewer-avatar">ER</div>
                     <div>
@@ -218,9 +280,14 @@
             </div>
 
             <div class="review-card">
-                <div class="stars">★★★★★</div>
-                <p class="review-text">"Atendimento impecável! Prazo e qualidade excelentes. A entrega foi muito mais
-                    rápida do que eu esperava. Continuem assim!"</p>
+                <div class="stars">
+                    <i data-lucide="star" class="star-filled"></i>
+                    <i data-lucide="star" class="star-filled"></i>
+                    <i data-lucide="star" class="star-filled"></i>
+                    <i data-lucide="star" class="star-filled"></i>
+                    <i data-lucide="star" class="star-filled"></i>
+                </div>
+                <p class="review-text">"Padrão de qualidade muito acima da média. A entrega foi muito mais rápida do que eu esperava e o carro ficou perfeito. Continuem assim!"</p>
                 <div class="reviewer">
                     <div class="reviewer-avatar">JC</div>
                     <div>
@@ -234,8 +301,10 @@
 
     <!-- ===== LOCALIZAÇÕES / CONTATO ===== -->
     <section class="locations-section" id="contato">
-        <div class="section-label">Onde estamos</div>
-        <h2 class="section-title">Duas unidades para te atender</h2>
+        <div class="section-header center">
+            <div class="section-label">Onde estamos</div>
+            <h2 class="section-title">Duas unidades prontas para te receber</h2>
+        </div>
 
         <div class="locations-grid">
             <!-- Unidade 1 -->
@@ -243,23 +312,24 @@
                 <span class="location-badge">Unidade 1</span>
                 <div class="location-name">Nova Petrópolis</div>
 
-                <div class="location-detail">
-                    <span class="location-detail-icon">📍</span>
-                    <span>Av. Imperatriz Leopoldina, 866 — Nova Petrópolis, São Bernardo do Campo, SP — CEP
-                        09770-272</span>
-                </div>
-                <div class="location-detail">
-                    <span class="location-detail-icon">🕐</span>
-                    <span>Segunda a sexta, das 8h às 18h</span>
-                </div>
-                <div class="location-detail">
-                    <span class="location-detail-icon">✉️</span>
-                    <span>mecanicarossi10@gmail.com</span>
+                <div class="location-details">
+                    <div class="location-detail">
+                        <span class="location-detail-icon"><i data-lucide="map-pin"></i></span>
+                        <span>Av. Imperatriz Leopoldina, 866<br>Nova Petrópolis, São Bernardo do Campo, SP<br>CEP 09770-272</span>
+                    </div>
+                    <div class="location-detail">
+                        <span class="location-detail-icon"><i data-lucide="clock"></i></span>
+                        <span>Segunda a Sexta, das 8h às 18h</span>
+                    </div>
+                    <div class="location-detail">
+                        <span class="location-detail-icon"><i data-lucide="mail"></i></span>
+                        <span>mecanicarossi10@gmail.com</span>
+                    </div>
                 </div>
 
                 <a href="https://api.whatsapp.com/send/?phone=5511954429886&text=Olá!+vim+pelo+site+e+gostaria+de+agendar+um+horário."
-                    target="_blank" class="whatsapp-btn">
-                    <i data-lucide="message-circle" style="width:16px;height:16px;"></i>
+                    target="_blank" class="whatsapp-btn w-full">
+                    <i data-lucide="message-circle" style="width:18px;height:18px;"></i>
                     (11) 95442-9886
                 </a>
             </div>
@@ -269,23 +339,24 @@
                 <span class="location-badge">Unidade 2</span>
                 <div class="location-name">Demarchi</div>
 
-                <div class="location-detail">
-                    <span class="location-detail-icon">📍</span>
-                    <span>Av. Maria Servidei Demarchi, 2.320 — Demarchi, São Bernardo do Campo, SP — CEP
-                        09820-000</span>
-                </div>
-                <div class="location-detail">
-                    <span class="location-detail-icon">🕐</span>
-                    <span>Segunda a sexta, das 8h às 18h</span>
-                </div>
-                <div class="location-detail">
-                    <span class="location-detail-icon">✉️</span>
-                    <span>rrcar.2023@gmail.com</span>
+                <div class="location-details">
+                    <div class="location-detail">
+                        <span class="location-detail-icon"><i data-lucide="map-pin"></i></span>
+                        <span>Av. Maria Servidei Demarchi, 2.320<br>Demarchi, São Bernardo do Campo, SP<br>CEP 09820-000</span>
+                    </div>
+                    <div class="location-detail">
+                        <span class="location-detail-icon"><i data-lucide="clock"></i></span>
+                        <span>Segunda a Sexta, das 8h às 18h</span>
+                    </div>
+                    <div class="location-detail">
+                        <span class="location-detail-icon"><i data-lucide="mail"></i></span>
+                        <span>rrcar.2023@gmail.com</span>
+                    </div>
                 </div>
 
                 <a href="https://api.whatsapp.com/send/?phone=5511961853408&text=Olá!+vim+pelo+site+e+gostaria+de+agendar+um+horário."
-                    target="_blank" class="whatsapp-btn">
-                    <i data-lucide="message-circle" style="width:16px;height:16px;"></i>
+                    target="_blank" class="whatsapp-btn w-full">
+                    <i data-lucide="message-circle" style="width:18px;height:18px;"></i>
                     (11) 96185-3408
                 </a>
             </div>
@@ -294,13 +365,12 @@
 
     <!-- ===== FOOTER ===== -->
     <footer>
-        <div class="footer-logo">
-            <img src="imagens/LOGO-NOVO-32_edited.avif" alt="Rossi Mecânica Logo">
-            Rossi <span>Mecânica</span>
-        </div>
-        <p>Rossi Mecânica 2026 © — Todos os direitos reservados.</p>
-        <div class="footer-links">
-            
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <img src="imagens/LOGO-NOVO-32_edited.avif" alt="Rossi Mecânica Logo">
+                Rossi <span>Mecânica</span>
+            </div>
+            <p>Rossi Mecânica 2026 © — Todos os direitos reservados.</p>
         </div>
     </footer>
 

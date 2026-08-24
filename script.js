@@ -7,8 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initScrollAnimations();
   initMobileMenu();
-  initHoverEffects();
   initCounterAnimation();
+  initCardGlowEffect();
+  initParallaxGears();
+  initInteractiveDashboard();
 });
 
 /* ===== Ícones Lucide ===== */
@@ -26,7 +28,6 @@ function initSmoothScroll() {
       const target = document.getElementById(id);
       if (!target) return;
       e.preventDefault();
-      // Fecha o menu mobile se estiver aberto
       closeMobileMenu();
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
@@ -35,9 +36,8 @@ function initSmoothScroll() {
 
 /* ===== Animações ao rolar ===== */
 function initScrollAnimations() {
-  // Adiciona classe fade-in aos elementos desejados
   const targets = document.querySelectorAll(
-    '.service-card, .review-card, .location-card, .about-visual, .stat-item'
+    '.service-card, .review-card, .location-card, .about-visual, .stat-item, .dashboard-container'
   );
 
   targets.forEach(el => el.classList.add('fade-in'));
@@ -74,11 +74,8 @@ function initMobileMenu() {
     toggleMenu(isOpen);
   });
 
-  // Fechar menu ao clicar no overlay
   if (overlay) {
-    overlay.addEventListener('click', () => {
-      toggleMenu(false);
-    });
+    overlay.addEventListener('click', () => toggleMenu(false));
   }
 }
 
@@ -86,8 +83,7 @@ function closeMobileMenu() {
   const menu = document.querySelector('.mobile-menu');
   const btn = document.querySelector('.mobile-menu-btn');
   const overlay = document.querySelector('.mobile-menu-overlay');
-  if (!menu) return;
-  menu.classList.remove('active');
+  if (menu) menu.classList.remove('active');
   if (btn) {
     btn.classList.remove('active');
     btn.setAttribute('aria-expanded', false);
@@ -96,10 +92,89 @@ function closeMobileMenu() {
   document.body.style.overflow = '';
 }
 
-/* ===== Hover nos cards de serviço ===== */
-function initHoverEffects() {
-  // Os hover effects visuais já estão no CSS.
-  // Aqui podemos adicionar efeitos JS extras se necessário.
+/* ===== Efeito "Lanterna" / Glow nos Cards ===== */
+function initCardGlowEffect() {
+  const cards = document.querySelectorAll('.service-card, .review-card');
+  
+  document.addEventListener('mousemove', (e) => {
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+}
+
+/* ===== Parallax nas Engrenagens / Elementos Flutuantes ===== */
+function initParallaxGears() {
+  const gears = document.querySelectorAll('.floating-gear');
+  if (!gears.length) return;
+
+  window.addEventListener('mousemove', (e) => {
+    const mouseX = e.clientX / window.innerWidth - 0.5;
+    const mouseY = e.clientY / window.innerHeight - 0.5;
+
+    gears.forEach((gear, index) => {
+      const speed = gear.getAttribute('data-speed') || (index + 1) * 20;
+      const x = mouseX * speed;
+      const y = mouseY * speed;
+      // Mantém a animação base de flutuar girando e adiciona o transform do mouse
+      gear.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  });
+}
+
+/* ===== Dashboard Interativo (Luzes do Painel) ===== */
+function initInteractiveDashboard() {
+  const indicators = document.querySelectorAll('.dash-indicator');
+  const infoTitle = document.getElementById('dash-info-title');
+  const infoDesc = document.getElementById('dash-info-desc');
+  
+  if (!indicators.length || !infoTitle) return;
+
+  const data = {
+    engine: {
+      title: "Luz de Injeção Eletrônica",
+      desc: "Indica falhas no motor, sensores ou sistema de exaustão. Requer diagnóstico imediato com scanner para evitar danos graves."
+    },
+    oil: {
+      title: "Pressão de Óleo Baixa",
+      desc: "O motor está operando sem lubrificação adequada. Pare o carro imediatamente para evitar que o motor funda."
+    },
+    battery: {
+      title: "Falha na Bateria / Alternador",
+      desc: "O sistema elétrico não está sendo carregado corretamente. O carro pode parar a qualquer momento. Verifique a bateria e o alternador."
+    },
+    temp: {
+      title: "Superaquecimento",
+      desc: "O motor atingiu uma temperatura crítica. Desligue imediatamente para evitar o derretimento de juntas e retentores."
+    }
+  };
+
+  indicators.forEach(ind => {
+    ind.addEventListener('click', () => {
+      // Remove active class
+      indicators.forEach(i => i.classList.remove('active'));
+      // Add to current
+      ind.classList.add('active');
+      
+      // Update text with animation
+      const type = ind.getAttribute('data-type');
+      
+      infoTitle.style.opacity = 0;
+      infoDesc.style.opacity = 0;
+      
+      setTimeout(() => {
+        infoTitle.textContent = data[type].title;
+        infoDesc.textContent = data[type].desc;
+        infoTitle.style.opacity = 1;
+        infoDesc.style.opacity = 1;
+      }, 200);
+    });
+  });
 }
 
 /* ===== Contador animado nas estatísticas ===== */
@@ -124,7 +199,6 @@ function initCounterAnimation() {
 
 function animateCounter(el) {
   const rawText = el.textContent.trim();
-  // Extrai prefixo ('+') e número
   const prefix = rawText.startsWith('+') ? '+' : '';
   const suffix = rawText.endsWith('%') ? '%' : '';
   const target = parseInt(rawText.replace(/\D/g, ''), 10);
@@ -141,38 +215,16 @@ function animateCounter(el) {
   }, 30);
 }
 
-/* ===== Sistema de notificações ===== */
-function showNotification(message, type = 'info') {
-  // Remove notificação existente
-  document.querySelector('.notification')?.remove();
-
-  const el = document.createElement('div');
-  el.className = `notification notification-${type}`;
-  el.textContent = message;
-  document.body.appendChild(el);
-
-  // Animar entrada
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => el.classList.add('show'));
-  });
-
-  // Remover após 4 segundos
-  setTimeout(() => {
-    el.classList.remove('show');
-    el.addEventListener('transitionend', () => el.remove(), { once: true });
-  }, 4000);
-}
-
 /* ===== Header: efeito ao rolar ===== */
 (function initHeaderScroll() {
   const header = document.getElementById('header');
   if (!header) return;
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 80) {
-      header.style.borderBottomColor = 'rgba(255,255,255,0.15)';
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
     } else {
-      header.style.borderBottomColor = '';
+      header.classList.remove('scrolled');
     }
   }, { passive: true });
 })();
