@@ -4,9 +4,9 @@
 
 /* ===== VARIÁVEIS ===== */
 :root {
-    --accent: #e11d48; /* Premium Rose/Red */
-    --accent-hover: #be123c;
-    --accent-dim: rgba(225, 29, 72, 0.1);
+    --accent: #d4af37; /* Logo Gold */
+    --accent-hover: #b8972e;
+    --accent-dim: rgba(212, 175, 55, 0.1);
     
     --bg-base: #09090b; /* Zinc 950 */
     --bg-surface: #18181b; /* Zinc 900 */
