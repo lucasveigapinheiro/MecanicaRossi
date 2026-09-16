@@ -1,5 +1,9 @@
 # Rossi Mecânica — Site institucional
 
+![Rossi Mecânica — site no ar](imagens/rossi-preview.jpg)
+
+No ar: https://lucasveigapinheiro.github.io/MecanicaRossi/
+
 Site institucional da **Rossi Mecânica**, oficina real em São Bernardo do Campo com duas unidades. Apresenta os serviços, a história da oficina, depoimentos de clientes e leva o visitante direto ao WhatsApp para agendar.
 
 ## Destaques
